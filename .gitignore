@@ -1,1 +1,11 @@
 node_modules/
+
+/client/built
+
+.DS_Store
+/client/.env.local
+/client/.env.developmental.local
+/client/.env.test.local
+/client/.env.production.local
+
+npm-debug.log*
