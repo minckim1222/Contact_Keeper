@@ -1,19 +1,43 @@
-import React, { useState } from "react";
-
+import React, { useState, useContext, useEffect } from "react";
+import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/auth/authContext";
 const Register = () => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+  const { setAlert } = alertContext;
+  const { register, error, clearErrors } = authContext;
+  useEffect(() => {
+    if (error) {
+      setAlert("  " + error, "danger");
+      clearErrors();
+    }
+  }, [error]);
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
     password2: ""
   });
+
   const { name, email, password, password2 } = user;
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onSubmit = e => {
     e.preventDefault();
-    console.log("Registered");
+    if (name === "" || email === "" || password === "") {
+      setAlert("  Please enter all fields.", "danger");
+    } else if (password.length < 6) {
+      setAlert("Password must be 6 or more characters", "danger");
+    } else if (password !== password2) {
+      setAlert("  Passwords must match.", "danger");
+    } else {
+      register({
+        name,
+        email,
+        password
+      });
+    }
   };
   return (
     <div className='form-container'>
