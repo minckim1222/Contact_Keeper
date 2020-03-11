@@ -20,7 +20,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// @route    POST api/user
+// @route    POST api/auth
 // @desc     Log in user
 // @access   Public
 router.post(
