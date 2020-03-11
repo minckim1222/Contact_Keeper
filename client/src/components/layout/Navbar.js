@@ -25,7 +25,7 @@ const Navbar = ({ title, icon }) => {
     <Fragment>
       <li>Hello {user && user.name}</li>
       <li>
-        <a onClick={onLogout} href='#!'>
+        <a onClick={onLogout} href='javascript:void(0);'>
           <i className='fas fa-sign-out-alt' />{" "}
           <span className='hide-sm'>Logout</span>
         </a>
